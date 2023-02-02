@@ -12,6 +12,19 @@
         public int VelocidadeAtual { get; set; }
         public bool Estepe { get; set; }
 
+        public Pneu(int _aro, int _velocidadeMaxima, string _tipo, bool _estepe)
+        {
+            Aro = _aro;
+            Tipo = _tipo;
+            VelocidadeMaxima = _velocidadeMaxima;
+            Estepe = _estepe;
+            VelocidadeAtual = 0;
+            Estourado = false;
+            TWI = false;
+            Cor = "Preta";
+            PercentualBorracha = 100;
+        }
+
 
         public void Girar( int _velocidade)
         {
@@ -42,6 +55,19 @@
                 VelocidadeAtual = 0;
             }
  
+        }
+        public void Exibir()
+        {
+            Console.WriteLine("Aro: " + Aro);
+            Console.WriteLine("PercentualBorracha: " + PercentualBorracha);
+            Console.WriteLine("Cor: " + Cor);
+            Console.WriteLine("VelocidadeMaxima: " + VelocidadeMaxima);
+            Console.WriteLine("Estepe: " + Estepe);
+            Console.WriteLine("Estourado. " + Estourado);
+            Console.WriteLine("Tipo: " + Tipo);
+            Console.WriteLine("TWI: " + TWI);
+            Console.WriteLine("VelocidadeAtual: " + VelocidadeAtual);
+
         }
 
 
