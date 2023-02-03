@@ -1,4 +1,6 @@
-﻿namespace Models
+﻿using System.Security.Cryptography.X509Certificates;
+
+namespace Models
 {
     public class Pneu
     {
@@ -11,8 +13,98 @@
         public bool Estepe { get; set; }
         public bool Estourado { get; set; }
         public bool Furado { get; set; }
-        public string Tipo { get; set; }
+        public string Tipo { get; set; }    
+        public int PercentualBorracha { get; set; }
+
+        public Pneu(int _aro, string _tipo,string _marca,bool _estepe, int _velocidadeMaxima)
+        {
+
+            Aro = _aro;
+            Tipo = _tipo;
+            Marca = _marca;
+            Estepe = _estepe;
+            VelocidadeMaxima = _velocidadeMaxima;
+
+            Cor = "Preto";
+            Furado = false;
+            Estourado = false;
+            VelocidadeAtual = 0;
+            PercentualBorracha = 100;
+            TWI = false;
+
+        }
+
+      
+
+        public void Girar(int _velocidade)
+        {
+            if (Estourado == true)
+            {
+                Console.WriteLine("O pneu está estourado");
+                return;
+            }
+
+            if (Furado == true)
+            {
+                Console.WriteLine("O pneu está furado");
+                return;
+            }
 
 
+            VelocidadeAtual += _velocidade;
+            PercentualBorracha -= 3;
+            if (VelocidadeAtual > VelocidadeMaxima || PercentualBorracha <= 30)
+            {
+                EstouraPneu();
+            }
+            
+        
+            
+
+        }
+
+        public void Frear(int _reducao)
+        {
+            VelocidadeAtual -= _reducao;
+            PercentualBorracha -= 5;
+
+            if (VelocidadeAtual < 0)
+            {
+                VelocidadeAtual = 0;
+            }
+
+            if (PercentualBorracha < 0)
+            {
+                PercentualBorracha = 0;
+            }
+
+            if (PercentualBorracha <= 30)
+            {
+                EstouraPneu();
+            }
+
+
+        }
+
+        private void EstouraPneu()
+        {
+            Estourado = true;
+            VelocidadeAtual = 0;
+        }
+
+        public void Exibir()
+        {
+            Console.WriteLine("Cor: " + Cor);
+            Console.WriteLine("Tipo: " + Tipo);
+            Console.WriteLine("Marca: " + Marca);
+            Console.WriteLine("Aro: " + Aro);
+            Console.WriteLine("Furado: " + Furado);
+            Console.WriteLine("Estourado: " + Estourado);
+            Console.WriteLine("Estepe: " + Estepe);
+            Console.WriteLine("VelocidadeAtual: " + VelocidadeAtual);
+            Console.WriteLine("VelocidadeMaxima: " + VelocidadeMaxima);
+            Console.WriteLine("PercentualBorracha: " + PercentualBorracha);
+            Console.WriteLine("TWI: " + TWI);
+        }
     }
 }
