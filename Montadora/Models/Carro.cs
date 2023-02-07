@@ -77,7 +77,7 @@ namespace Models
             if (Ligado == true && _impulso > 0)
             {
                 Odometro += 18;
-                Combustivel = Combustivel - 8;
+                Combustivel -= 8;
 
                 if (Combustivel <= 0)
                 {
@@ -137,9 +137,7 @@ namespace Models
                 Console.WriteLine("A quantidade de combustível ultrapassa o limite de capacidade");
                 return;
             }
-            if (Combustivel < 100)
-                Combustivel = Combustivel + _quantidadeCombustivel;
-
+            Combustivel += _quantidadeCombustivel;
         }
         public void Exibir()
         {

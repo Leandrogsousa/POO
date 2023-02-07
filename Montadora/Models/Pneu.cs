@@ -24,8 +24,6 @@
             Cor = "Preta";
             PercentualBorracha = 100;
         }
-
-
         public void Girar( int _velocidade)
         {
             VelocidadeAtual = VelocidadeAtual + _velocidade;
